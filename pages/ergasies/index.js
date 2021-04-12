@@ -1,12 +1,13 @@
 import styles from '../../styles/Ergasies.module.css';
 import Head from 'next/head';
+import Link from 'next/link';
 
 export const getStaticProps = async () => {
-    const res = await fetch("https://jsonplaceholder.typicode.com/todos");
-    const data = await res.json();
+    const res = await fetch("https://my-json-server.typicode.com/WhitestRabbit/aueb-ergasies/projects");
+    const ergasies = await res.json();
 
     return {
-        props: { ergasies: data }
+        props: { ergasies }
     }
 }
 
@@ -20,11 +21,11 @@ const ergasies = ({ergasies}) => {
             <div>
                 <h1>Ergasies</h1>
                 {ergasies.map(ergasia => (
-                    <div key={ergasia.id}>
-                        <a>
-                            <h3>{ergasia.title}</h3>
+                    <Link key={ergasia.id} href={`/ergasies/${ergasia.id}`}>
+                        <a className={styles.single}>
+                            <h3>{ergasia.name}</h3>
                         </a>
-                    </div>)
+                    </Link>)
                     )
                 }
             </div>
