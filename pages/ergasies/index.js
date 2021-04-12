@@ -2,7 +2,7 @@ import styles from '../../styles/Ergasies.module.css';
 import Head from 'next/head';
 
 export const getStaticProps = async () => {
-    const res = await fetch("https://mockend.com/aueb-ergasies/Ergasies");
+    const res = await fetch("https://jsonplaceholder.typicode.com/todos");
     const data = await res.json();
 
     return {
@@ -22,7 +22,7 @@ const ergasies = ({ergasies}) => {
                 {ergasies.map(ergasia => (
                     <div key={ergasia.id}>
                         <a>
-                            <h3>{ergasia.name}</h3>
+                            <h3>{ergasia.title}</h3>
                         </a>
                     </div>)
                     )
